@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Patuh! 🐰🎂</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Comic Sans MS", "Trebuchet MS", sans-serif;
+    overflow:hidden;
+    background:#fff0f8;
+    color:#633b58;
+}
+
+/* BACKGROUND */
+
+.page{
+    width:100vw;
+    height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.page.active{
+    display:flex;
+}
+
+.bg{
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at 10% 20%,#f69df0 0 8%,transparent 9%),
+    radial-gradient(circle at 90% 15%,#d7f7ff 0 9%,transparent 10%),
+    radial-gradient(circle at 80% 80%,#fff0b8 0 10%,transparent 11%),
+    linear-gradient(135deg,#fff3fa,#e9faff);
+}
+
+/* CLOUD */
+
+.cloud{
+    position:absolute;
+    background:white;
+    width:150px;
+    height:50px;
+    border-radius:50px;
+    opacity:.8;
+    animation:cloud 12s linear infinite;
+}
+
+.cloud:before,
+.cloud:after{
+    content:"";
+    position:absolute;
+    background:white;
+    border-radius:50%;
+}
+
+.cloud:before{
+    width:70px;
+    height:70px;
+    left:25px;
+    bottom:15px;
+}
+
+.cloud:after{
+    width:60px;
+    height:60px;
+    right:25px;
+    bottom:15px;
+}
+
+.cloud1{
+    top:10%;
+    left:-180px;
+}
+
+.cloud2{
+    top:25%;
+    left:-300px;
+    animation-delay:5s;
+    transform:scale(.7);
+}
+
+@keyframes cloud{
+    to{
+        transform:translateX(130vw);
+    }
+}
+
+/* CONTENT */
+
+.content{
+    position:relative;
+    z-index:5;
+    width:min(600px,90%);
+}
+
+/* BUNNY */
+
+.bunny{
+    font-size:110px;
+    animation:bounce 1.5s infinite;
+    filter:drop-shadow(0 10px 5px #0001);
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0) rotate(-3deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(3deg);
+    }
+}
+
+/* TEXT */
+
+h1{
+    font-size:clamp(42px,9vw,75px);
+    color:#ff68ae;
+    text-shadow:
+        3px 3px white,
+        6px 6px #ffc1df;
+    margin:10px 0;
+}
+
+.subtitle{
+    font-size:18px;
+    margin:10px 0 25px;
+}
+
+/* BUTTON */
+
+button{
+    border:none;
+    padding:15px 28px;
+    border-radius:30px;
+    font-size:17px;
+    font-weight:bold;
+    font-family:inherit;
+    cursor:pointer;
+    background:#ff76b8;
+    color:white;
+    box-shadow:0 6px 0 #d94d91;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 0 #d94d91;
+}
+
+button:active{
+    transform:translateY(4px);
+    box-shadow:0 2px 0 #d94d91;
+}
+
+/* SECOND PAGE */
+
+.card{
+    position:relative;
+    width:min(700px,92%);
+    max-height:90vh;
+    overflow:auto;
+    padding:35px 25px;
+    background:#ffffffdd;
+    border:5px solid white;
+    border-radius:35px;
+    box-shadow:
+        0 15px 0 #ffc8e3,
+        0 20px 40px #b66a9630;
+}
+
+.card h2{
+    color:#ff5eaa;
+    font-size:40px;
+}
+
+.name{
+    color:#8d67e8;
+    font-size:30px;
+    margin:10px 0;
+}
+
+.photo{
+    width:180px;
+    height:180px;
+    margin:15px auto;
+    border-radius:50%;
+    border:8px solid #ffd1e8;
+    overflow:hidden;
+    background:#ffe5f1;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* MESSAGE */
+
+.message{
+    line-height:1.8;
+    font-size:16px;
+    margin:20px auto;
+    max-width:560px;
+}
+
+/* GIFTS */
+
+.gifts{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.gift{
+    background:#fff0f7;
+    border:3px solid #ffd1e5;
+    border-radius:20px;
+    padding:15px;
+    font-size:40px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.gift:hover{
+    transform:rotate(-8deg) scale(1.1);
+}
+
+/* POPUP */
+
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0007;
+    z-index:100;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.popup.show{
+    display:flex;
+}
+
+.popup-box{
+    background:white;
+    border-radius:30px;
+    padding:35px;
+    max-width:450px;
+    width:100%;
+    animation:pop .4s ease;
+}
+
+.popup-box h2{
+    color:#ff5da9;
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.popup-box p{
+    line-height:1.7;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.5) rotate(-10deg);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1) rotate(0);
+        opacity:1;
+    }
+}
+
+/* BALLOONS */
+
+.balloon{
+    position:absolute;
+    bottom:-120px;
+    font-size:50px;
+    animation:balloon 7s linear forwards;
+    z-index:20;
+}
+
+@keyframes balloon{
+    to{
+        transform:translateY(-120vh) rotate(20deg);
+    }
+}
+
+/* CONFETTI */
+
+.confetti{
+    position:absolute;
+    width:9px;
+    height:15px;
+    top:-20px;
+    animation:fall 3s linear forwards;
+    z-index:50;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+/* HEART */
+
+.heart{
+    position:absolute;
+    font-size:25px;
+    bottom:-40px;
+    animation:heart 5s linear forwards;
+    z-index:10;
+}
+
+@keyframes heart{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* RUN BUTTON */
+
+#noButton{
+    background:#aaa;
+    box-shadow:0 6px 0 #777;
+    position:relative;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+
+<section class="page active" id="page1">
+
+<div class="bg"></div>
+
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+
+<div class="content">
+
+<div class="bunny">🐰</div>
+
+<h1>HAPPY<br>BIRTHDAY! 🎂</h1>
+
+<p class="subtitle">
+    Haiii! Patuh Ada kejutan kecil buat kamu! 👀💗
+</p>
+
+<button onclick="openPage()">
+    🎁 BUKA KEJUTAN
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= PAGE 2 ================= -->
+
+<section class="page" id="page2">
+
+<div class="bg"></div>
+
+<div class="card">
+
+<div style="font-size:55px;">🎉🐰🎂</div>
+
+<h2>SELAMAT ULANG TAHUN!</h2>
+
+<div class="name">
+    Muhamad Patuh Arahman 💗
+</div>
+
+<div class="photo">
+
+<img src="foto.jpg" alt="Foto">
+
+</div>
+
+<p class="message">
+
+Hari ini adalah hari spesial karena seseorang yang sangat 
+berarti buat aku bertambah satu tahun lagi. 🥺❤️
+
+<br><br>
+
+Semoga di umur yang baru ini,semua hal baik datang ke kamu.
+Semoga kamu selalu diberi kesehatan, kebahagiaan, dimudahkan dalam setiap langkah,
+ dan semua impian yang kamu punya bisa tercapai satu per satu. ✨
+<br><br>
+
+Terima kasih sudah hadir di hidup aku,
+ sudah menjadi tempat cerita, tempat bercanda, 
+ dan seseorang yang selalu berhasil membuat hari-hariku jadi lebih berwarna. 💗
+
+ <br><br>
+
+Aku mungkin nggak selalu bisa memberikan hal yang sempurna,
+tapi aku akan selalu berusaha menjadi seseorang yang bisa membuat kamu tersenyum dan merasa dihargai. ❤️
+
+<br><br>
+
+Selamat ulang tahun, orang kesayanganku.
+Semoga panjang umur, sehat selalu, makin dewasa, makin bahagia, dan semoga kita bisa terus membuat banyak kenangan indah bersama. 🥰🎉
+
+<br><br>
+
+<strong>
+Pokoknya hari ini kamu harus bahagia! 😤🎂
+</strong>
+
+</p>
+
+
+<div class="gifts">
+
+<div class="gift" onclick="gift1()">
+🎁
+</div>
+
+<div class="gift" onclick="gift2()">
+🌸
+</div>
+
+<div class="gift" onclick="gift3()">
+🍰
+</div>
+
+<div class="gift" onclick="gift4()">
+💌
+</div>
+
+</div>
+
+<br>
+
+<p>
+Klik kado di atas! 👆😆
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= POPUP ================= -->
+
+<div class="popup" id="popup">
+
+<div class="popup-box">
+
+<div id="popupContent"></div>
+
+<br>
+
+<button onclick="closePopup()">
+    OKEEE 😆💗
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* OPEN */
+
+function openPage(){
+
+    document.getElementById("page1")
+    .classList.remove("active");
+
+    document.getElementById("page2")
+    .classList.add("active");
+
+    confetti();
+
+    balloons();
+
+    hearts();
+
+}
+
+
+/* POPUP */
+
+function popup(text){
+
+    document.getElementById("popupContent").innerHTML=text;
+
+    document.getElementById("popup")
+    .classList.add("show");
+
+}
+
+
+function closePopup(){
+
+    document.getElementById("popup")
+    .classList.remove("show");
+
+}
+
+
+/* GIFT 1 */
+
+function gift1(){
+
+popup(`
+<div style="font-size:80px">🎁</div>
+
+<h2>KADO RAHASIA!</h2>
+
+<p>
+Isinya bukan uang... 😭
+<br><br>
+Tapi doa supaya kamu
+selalu bahagia dan sukses! 💗
+</p>
+`);
+
+}
+
+
+/* GIFT 2 */
+
+function gift2(){
+
+popup(`
+<div style="font-size:80px">🌸</div>
+
+<h2>BUNGA UNTUKMU!</h2>
+
+<p>
+Bunga ini memang virtual...
+<br><br>
+Tapi doanya REAL! 😤💗
+<br><br>
+Semoga semua yang indah
+datang ke hidupmu.
+</p>
+`);
+
+}
+
+
+/* GIFT 3 */
+
+function gift3(){
+
+popup(`
+<div style="font-size:80px">🍰</div>
+
+<h2>KEK!</h2>
+
+<p>
+Jangan dimakan sendirian! 😭
+<br><br>
+Minimal bagi satu potong
+sama pembuat website ini. 😂
+</p>
+`);
+
+}
+
+
+/* GIFT 4 */
+
+function gift4(){
+
+popup(`
+<div style="font-size:80px">💌</div>
+
+<h2>SURAT KECIL</h2>
+
+<p>
+Terima kasih sudah menjadi
+seseorang yang spesial.
+<br><br>
+Semoga umur baru ini membawa
+banyak cerita indah buat kamu. 💗
+<br><br>
+Happy Birthday! 🎂✨
+</p>
+`);
+
+}
+
+
+/* CONFETTI */
+
+function confetti(){
+
+    for(let i=0;i<100;i++){
+
+        let c=document.createElement("div");
+
+        c.className="confetti";
+
+        c.style.left=Math.random()*100+"vw";
+
+        c.style.background=
+        `hsl(${Math.random()*360},80%,70%)`;
+
+        c.style.animationDelay=
+        Math.random()*2+"s";
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>{
+            c.remove();
+        },4000);
+
+    }
+
+}
+
+
+/* BALLOON */
+
+function balloons(){
+
+    let icons=["🎈","🎈","🎈","🎀","🩷"];
+
+    for(let i=0;i<15;i++){
+
+        let b=document.createElement("div");
+
+        b.className="balloon";
+
+        b.innerHTML=
+        icons[Math.floor(Math.random()*icons.length)];
+
+        b.style.left=
+        Math.random()*100+"vw";
+
+        b.style.animationDelay=
+        Math.random()*4+"s";
+
+        document.body.appendChild(b);
+
+        setTimeout(()=>{
+            b.remove();
+        },8000);
+
+    }
+
+}
+
+
+/* HEART */
+
+function hearts(){
+
+    setInterval(()=>{
+
+        let h=document.createElement("div");
+
+        h.className="heart";
+
+        h.innerHTML=
+        ["💗","💕","💖","🌸","✨"]
+        [Math.floor(Math.random()*5)];
+
+        h.style.left=
+        Math.random()*100+"vw";
+
+        document.body.appendChild(h);
+
+        setTimeout(()=>{
+            h.remove();
+        },6000);
+
+    },600);
+
+}
+
+</script>
+
+</body>
+</html>
+```
